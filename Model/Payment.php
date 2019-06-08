@@ -95,7 +95,10 @@ class Payment extends \Magento\Payment\Model\Method\Cc
         } catch (\Exception $e) {
             $this->debugData(['request' => $requestData, 'exception' => $e->getMessage()]);
             $this->_logger->error(__('Payment capturing error.'));
-            throw new \Magento\Framework\Validator\Exception(__('Payment capturing error.'));
+
+             // echo $e->getMessage();
+             // die();
+            throw new \Magento\Framework\Validator\Exception(__('Payment capturing error.'.$e->getMessage()));
         }
         return $this;
     }
